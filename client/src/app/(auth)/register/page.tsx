@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Button } from "../../../../components/ui/button"
+import axios from "axios"
 import {
   Form,
   FormControl,
@@ -73,9 +74,22 @@ export default function Register() {
   })
 
   // Define a submit handler
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    router.push("/login");
-    console.log(values)
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      console.log(JSON.stringify(values));
+      const response = await axios.post('http://localhost:3001/api/user/register', JSON.stringify(values));
+  
+      if (response.status === 201) {
+        router.push("/login");
+        console.log('Success:', response.data);
+      } else {
+        throw new Error('Something went wrong');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle errors (network issues, validation errors from backend, etc.)
+      // alert(error.message);
+    }
   }
   return (
     <section className="w-full flex justify-center items-center">
@@ -124,8 +138,8 @@ export default function Register() {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
-                        <SelectItem value="apple">Male</SelectItem>
-                        <SelectItem value="banana">Female</SelectItem>
+                        <SelectItem value="Male">Male</SelectItem>
+                        <SelectItem value="Female">Female</SelectItem>
                       </SelectGroup>
                     </SelectContent>
                   </Select>

@@ -1,6 +1,7 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
+import axios from "axios"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Button } from "../../../../components/ui/button"
@@ -14,6 +15,7 @@ import {
 } from "../../../../components/ui/form"
 import { Input } from "../../../../components/ui/input"
 import { Textarea } from "../../../../components/ui/textarea"
+import { useRouter } from "next/navigation"
 
 
 const formSchema = z.object({
@@ -28,6 +30,7 @@ const formSchema = z.object({
 })
 
 export default function Contact() {
+  const router = useRouter();
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -39,9 +42,26 @@ export default function Contact() {
   })
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      // Example of an asynchronous operation (e.g., sending data to a server)
+      const response = await axios.post("http://localhost:3001/api/contact",values);
+  
+      if(response.status==201){
+        alert('submitted successfully');
+        // router.push("/landingPage")
+      }
+      else if(response.status==400){
+        console.log("Enter Blank input")
+      }
+      else{
+        alert('Failed to submit form. Please try again later.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   }
+  
   return (
     <section className="flex justify-center items-center">
     <Form {...form}>
