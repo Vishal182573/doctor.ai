@@ -20,6 +20,7 @@ export default function Home() {
       signIn(undefined, { callbackUrl: '/' });
     },
   });
+  console.log(session)
   if (status !== 'authenticated') {
     return (
       <div className="bg-white rounded-lg shadow-md p-4 animate-pulse">

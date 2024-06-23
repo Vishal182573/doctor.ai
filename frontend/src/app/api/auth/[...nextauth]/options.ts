@@ -51,6 +51,7 @@ export const options: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_SECRET as string,
     }),
   ],
+  debug: true, // Enable debug mode
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
       await dbConnect();

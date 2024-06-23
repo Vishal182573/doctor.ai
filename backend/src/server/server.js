@@ -3,6 +3,7 @@ import dbconnection from "./config/dbConnection.js";
 import contact from "./routes/contactRoutes.js";
 import cors from "cors";
 import user from "./routes/userRoutes.js";
+import {FRONTEND_URL} from "./constants.js"
 
 dbconnection();
 const app = express();
@@ -11,7 +12,7 @@ const port = process.env.PORT || 3001;
 app.use(json());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: `${FRONTEND_URL}`,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })

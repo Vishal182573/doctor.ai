@@ -16,6 +16,7 @@ import {
 import { Input } from "../../../../components/ui/input";
 import { Textarea } from "../../../../components/ui/textarea";
 import { useRouter } from "next/navigation";
+import { BACKEND_URL } from "../../../../global/constants";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -46,7 +47,7 @@ export default function Contact() {
     try {
       // Example of an asynchronous operation (e.g., sending data to a server)
       const response = await axios.post(
-        "http://localhost:3001/api/contact/message",
+        `${BACKEND_URL}/api/contact/message`,
         values
       );
 

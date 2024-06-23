@@ -19,9 +19,9 @@ export default function diagonises() {
     },
     {
       image: 'https://via.placeholder.com/400x200',
-      title: 'Breast Cancer',
+      title: 'Skin Cancer',
       description: 'Description for Disease 2',
-      route:'/breastCancer'
+      route:'/skinCancer'
     },
     {
       image: 'https://via.placeholder.com/400x200',
@@ -39,13 +39,13 @@ export default function diagonises() {
       image: 'https://via.placeholder.com/400x200',
       title: 'Lung Disease',
       description: 'Description for Disease 5',
-      route:'/lungsDisease'
+      route:'/lungDisease'
     },
     {
       image: 'https://via.placeholder.com/400x200',
-      title: 'Disease 6',
+      title: 'Covid 19',
       description: 'Description for Disease 6',
-      route:'/diabetes'
+      route:'/covid19'
     },
   ];
   return (

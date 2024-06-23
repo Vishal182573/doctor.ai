@@ -25,6 +25,7 @@ import {
 import { Input } from "../../../../components/ui/input";
 import { Textarea } from "../../../../components/ui/textarea";
 import { useRouter } from "next/navigation";
+import { BACKEND_URL } from "../../../../global/constants";
 
 // Define the schema using zod
 const formSchema = z
@@ -82,7 +83,7 @@ export default function Register() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/user/register",
+        `${BACKEND_URL}/api/user/register`,
         values
       );
 
@@ -278,7 +279,7 @@ export default function Register() {
             )}
           />
 
-          <Button type="submit">Register</Button>
+          <Button type="submit" className="bg-blue-600 hover:bg-blue-700 font-bold">Register</Button>
         </form>
       </Form>
     </section>
