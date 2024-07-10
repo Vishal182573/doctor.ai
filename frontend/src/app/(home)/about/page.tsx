@@ -17,9 +17,10 @@ export default function aBout(){
           <li>Tailwind CSS</li>
           <li>Machine Learning</li>
           <li>Express.js</li>
-          <li>JWT</li>
+          <li>Next Auth</li>
           <li>Node.js</li>
-          <li>MongoDB</li>
+          <li>Prisma</li>
+          <li>Postgres SQL</li>
         </ul>
       </div>
     </div>
